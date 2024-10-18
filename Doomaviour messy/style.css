@@ -1,0 +1,28 @@
+body{
+    background-color: rgb(144, 237, 206);
+}
+p{
+    color: rgb(16,76,76);
+    background-color: bisque;
+    
+    
+}
+h1{
+    color: darksalmon;
+    
+}
+h3{
+    text-decoration: underline;
+    color: chocolate;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ul{
+    color: rgb(16, 76, 76);
+}
+.special-highlight{
+  
+
+}
+.music{
+    background-color: rgb(116, 116, 171);
+}
