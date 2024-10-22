@@ -107,7 +107,7 @@ function draw() {
     for (let i = 0; i < xArrayNote1.length; i++) {
       let noteWave = noise(frameCount * 0.1 +i);
       let moving = map(noteWave, 0, 1, -2, 2);
-      xArrayNote1[i] += 0.55;
+      xArrayNote1[i] += 0.5;
       yArrayNote1[i] += moving;
     }
     push();
