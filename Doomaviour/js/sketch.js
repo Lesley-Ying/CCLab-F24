@@ -44,8 +44,7 @@ function draw() {
     noStroke();
     for (let xBg = 0; xBg < width; xBg++) {
       let freq = xBg * 0.05 * noise(sin(frameCount * 0.005));
-      let amp = 1;
-      let sinValue = sin(freq) * amp;
+      let sinValue = sin(freq);
       let brightness = map(sinValue, -1, 1, 150, 255);
       fill(brightness);
       rect(xBg, 0, 1, height);
