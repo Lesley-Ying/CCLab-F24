@@ -12,13 +12,8 @@ let randomArray = [];
 let note1Num, note2Num, note3Num;
 let rectSize = 30;
 let brightness;
-let xBg;
-let amp;
-let freq;
 let disk4Count = 0;
 let disk = 0;
-let r;
-let coordinateNum = 10;
 let ampA = 0.5;
 let arect = 10;
 let c1X = 725;
@@ -29,19 +24,14 @@ let squarelocX = 400;
 let xSpeed = 5;
 let squarelocY = 250;
 let ySpeed = 1;
-let x2;
-let y2;
 let xOffset, yOffset;
 let speed = 0.005;
-let startX;
-let startY;
 let bgColor = 255;
-
 function setup() {
-  let cnv = createCanvas(800, 500);
-  cnv.parent("p5-canvas-container");
   xOffset = random(1000);
   yOffset = random(1000);
+ let cnv = createCanvas(800, 500);
+ cnv.parent("p5-canvas-container");
   for (let i = 0; i < 60; i++) {
     randomArray.push(random(0, 5));
   }
@@ -50,6 +40,7 @@ function setup() {
 function draw() {
   background(bgColor);
   if (disk == 0) {
+    //background changing
     noStroke();
     for (let xBg = 0; xBg < width; xBg++) {
       let freq = xBg * 0.05 * noise(sin(frameCount * 0.005));
@@ -59,17 +50,16 @@ function draw() {
       fill(brightness);
       rect(xBg, 0, 1, height);
     }
+    // color and moving of the creature
     noStroke();
     let sinValue = map(sin(frameCount * 0.025), -1, 1, 0, 1);
     from = color("rgba(255,255,255,0.52)");
     to = color("#9E9E9EB5");
-    backgroundColor = lerpColor(from, to, sinValue);
-    fill(backgroundColor);
+    creatureColor = lerpColor(from, to, sinValue);
+    fill(creatureColor);
     let r = 90;
-    // r[0] += 1
     let x0 = 0.2 * noise(xOffset) * width;
     let y0 = 0.2 * noise(yOffset) * height;
-    //push();
     drawDoomaD(width / 2 + x0, height / 2 + y0, 90, 10, 0.01);
     xOffset += speed;
     yOffset += speed;
@@ -83,6 +73,7 @@ function draw() {
     note2ColorMinor = "#F4E7E7A3";
     bgColor = "#EFE8B0C9";
     r = 80;
+    //draw note
     for (let i = 0; i < note1Num; i++) {
       drawNote1(xArrayNote1[i], yArrayNote1[i]);
     }
@@ -97,13 +88,15 @@ function draw() {
       xArrayNote2[i] += 0.5;
       yArrayNote2[i] += ampA * sin(frameCount * 0.03);
     }
-    let x1 = 0.25 * noise(xOffset) * width;
-    let y1 = 0.25 * noise(yOffset) * height;
+    //creature color
     let sinValue = map(sin(frameCount * 0.1), -1, 1, 0, 1);
     from = color("#F97BF0");
     to = color("#A8F4FB82");
-    backgroundColor = lerpColor(from, to, sinValue);
-    fill(backgroundColor);
+    creatureColor = lerpColor(from, to, sinValue);
+    fill(creatureColor);
+    //creature moving
+    let x1 = 0.25 * noise(xOffset) * width;
+    let y1 = 0.25 * noise(yOffset) * height;
     drawDoomaD(width / 2 + x1, height / 2 + y1, 90, 10, 0.1);
     drawCompanionA(width / 2 + x1, height / 2 + y1);
     xOffset += speed;
@@ -136,8 +129,9 @@ function draw() {
     let sinValue = map(sin(frameCount * 0.1), -1, 1, 0, 1);
     from = color("#2A852E7F");
     to = color("#003803");
-    backgroundColor = lerpColor(from, to, sinValue);
-    bgColor = backgroundColor;
+    bgColor = lerpColor(from, to, sinValue);
+
+    //draw note
     for (let i = 0; i < note3Num; i++) {
       drawNote3(xArrayNote3[i], yArrayNote3[i]);
     }
@@ -147,6 +141,7 @@ function draw() {
       xArrayNote3[i] += 0.5;
       yArrayNote3[i] += moving;
     }
+    //creature
     squarelocX = squarelocX + xSpeed;
     squarelocY = squarelocY + ySpeed;
     if (squarelocX < 0 + 300 || squarelocX > width - 300) {
@@ -168,13 +163,14 @@ function draw() {
       let sinValue = map(sin(frameCount * 0.1), -1, 1, 0, 1);
       from = color("#37E23E");
       to = color("#EE463A");
-      backgroundColor = lerpColor(from, to, sinValue);
-      fill(backgroundColor);
+      creatureColor = lerpColor(from, to, sinValue);
+      fill(creatureColor);
       noStroke();
       rect(-15, -15, arect, arect);
       pop();
     }
     pop();
+    //record player working
     push();
     if (c2X < 770) {
       c2X += 0.1;
@@ -196,23 +192,25 @@ function draw() {
     triangle(155, 342, 155, 358, 168, 350);
   }
   if (disk == 3) {
+    //call all color
     note1ColorMain = "#687C85";
     note1ColorMinor = "#687C85";
     note2ColorMain = "#687C85";
     note2ColorMinor = "#687C85";
-    bgColor = "#79A2B5EA";
-    coordinateNum = 55;
-    let x3 = 0.25 * noise(xOffset) * width;
-    let y3 = 0.25 * noise(yOffset) * height;
-    noStroke();
     let sinValue = map(sin(frameCount * 0.01), -1, 1, 0, 1);
     from = color("#111632");
     to = color("#696E8C82");
-    backgroundColor = lerpColor(from, to, sinValue);
-    fill(backgroundColor);
+    creatureColor = lerpColor(from, to, sinValue);
+    bgColor = "#79A2B5EA";
+    let x3 = 0.25 * noise(xOffset) * width;
+    let y3 = 0.25 * noise(yOffset) * height;
+    //creature
+    noStroke();
+    fill(creatureColor);
     drawDoomaD(width / 2 + x3, height / 2 + y3, 80, 55, 0.005);
     xOffset += speed;
     yOffset += speed;
+    //note
     for (let i = 0; i < note2Num; i++) {
       drawNote2(xArrayNote2[i], yArrayNote2[i]);
     }
@@ -227,6 +225,7 @@ function draw() {
       xArrayNote1[i] += 0.5;
       yArrayNote1[i] += 0.2 * sin(frameCount * 0.01);
     }
+    //record player moving
     push();
     if (c3X < 770) {
       c3X += 0.1;
@@ -249,8 +248,6 @@ function draw() {
   }
   if (disk == 4) {
     disk4Count += 1;
-    startX = width / 2;
-    startY = height / 2;
     noStroke();
     for (let y = 0; y < height; y += rectSize) {
       for (let x = 0; x < width; x += rectSize) {
@@ -280,16 +277,16 @@ function draw() {
     let directionX = [1, -1, 0, 0, 1];
     let directionY = [0, 0, 1, -1, 1];
     for (let i = 0; i < 5; i++) {
-      let xD = startX + directionX[i] * disk4Count * 0.8;
-      let yD = startY + directionY[i] * disk4Count * 0.8;
+      let xD = width / 2 + directionX[i] * disk4Count * 0.8;
+      let yD = height / 2 + directionY[i] * disk4Count * 0.8;
       push();
       translate(xD, yD);
       transparencyD = 200;
       let sinValue = map(sin(frameCount * 0.025), -1, 1, 0, 1);
       from = color("rgba(255,255,255,0.52)");
       to = color("#9E9E9EB5");
-      backgroundColor = lerpColor(from, to, sinValue);
-      fill(backgroundColor);
+      creatureColor = lerpColor(from, to, sinValue);
+      fill(creatureColor);
       drawDoomaD(0, 0, 50, 10, 0.01);
       pop();
     }
@@ -422,28 +419,25 @@ function drawCompanionA(xCA, yCA) {
   let sinValue = map(sin(frameCount * 0.1), -1, 1, 0, 1);
   from = color("#F97BF0");
   to = color("#A8F4FB82");
-  backgroundColor = lerpColor(from, to, sinValue);
+  companionColor = lerpColor(from, to, sinValue);
 
   let freq1 = frameCount * 0.05;
   let amp1 = 100;
   let sinValue1 = sin(freq1) * amp1;
   let cosValue1 = cos(freq1) * amp1;
-  fill(backgroundColor);
+  fill(companionColor);
 
   let xA0 = cosValue1;
   let yA0 = sinValue1;
   noStroke();
-  //fill("#A8F4FB82");
   circle(xA0, yA0, 20);
 
   let xA1 = 0;
   let yA1 = sinValue1;
-  //fill("#F97BF0");
   circle(xA1, yA1, 10);
 
   let xA2 = cosValue1;
   let yA2 = 0;
-  //fill("white");
   circle(xA2, yA2, 10);
   pop();
 }
@@ -558,4 +552,3 @@ function drawShelfandRecord(xS, yS, xR, yR) {
   circle(100, -45, 30);
   pop();
 }
-
