@@ -15,7 +15,7 @@ let brightness;
 let disk4Count = 0;
 let disk = 0;
 let ampA = 0.5;
-let arect = 10;
+let arect = 35;
 let c1X = 725;
 let c2X = 725;
 let c3X = 725;
@@ -206,7 +206,7 @@ function draw() {
     //creature
     noStroke();
     fill(creatureColor);
-    drawDoomaD(width / 2 + x3, height / 2 + y3, 80, 55, 0.005);
+    drawDoomaD(width / 2 + x3, height / 2 + y3, 100, 55, 0.005);
     xOffset += speed;
     yOffset += speed;
     //note
@@ -276,8 +276,8 @@ function draw() {
     let directionX = [1, -1, 0, 0, 1];
     let directionY = [0, 0, 1, -1, 1];
     for (let i = 0; i < 5; i++) {
-      let xD = width / 2 + directionX[i] * disk4Count * 0.8;
-      let yD = height / 2 + directionY[i] * disk4Count * 0.8;
+      let xD = 2*width / 3 + directionX[i] * disk4Count * 0.8;
+      let yD = 2*height / 3+ directionY[i] * disk4Count * 0.8;
       push();
       translate(xD, yD);
       transparencyD = 200;
