@@ -421,7 +421,7 @@ function drawCompanionA(xCA, yCA) {
   companionColor = lerpColor(from, to, sinValue);
 
   let freq1 = frameCount * 0.05;
-  let amp1 = 100;
+  let amp1 = 70;
   let sinValue1 = sin(freq1) * amp1;
   let cosValue1 = cos(freq1) * amp1;
   fill(companionColor);
