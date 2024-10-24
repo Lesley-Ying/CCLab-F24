@@ -430,14 +430,18 @@ function drawCompanionA(xCA, yCA) {
   let yA0 = sinValue1;
   noStroke();
   circle(xA0, yA0, 20);
+  circle(xA0+15, yA0+15,10)
+  
 
   let xA1 = 0;
   let yA1 = sinValue1;
   circle(xA1, yA1, 10);
+  circle(xA1+30,yA1-5,10)
 
   let xA2 = cosValue1;
   let yA2 = 0;
   circle(xA2, yA2, 10);
+  circle(xA2-15, yA2-15, 10);
   pop();
 }
 function drawShelfandRecord(xS, yS, xR, yR) {
