@@ -60,11 +60,6 @@ class LesleyDancer {
     }
     this.angle+=0.05;
     this.tailAngle += this.tailWaveSpeed;
-    if (this.tailAngle > TWO_PI) {
-      this.tailAngle -= TWO_PI;
-    }
-    this.tailWaveSpeed = 0.1 + random(-0.02, 0.02);
-    this.tailAmplitude = 20
     this.x = lerp(this.x, this.targetX, this.lerpSpeed);
     
   
@@ -89,7 +84,7 @@ class LesleyDancer {
     rotate(0.5*radians(tailWave));
     
     
-    beginShape();//tale
+    beginShape();//tail
   noStroke();
   fill("#B3F0F8")
   
