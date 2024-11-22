@@ -1,0 +1,164 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+#p5-canvas-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  z-index: -10;
+}
+
+.main-container {
+  background-color: bisque;
+}
+
+.headline-container {
+  margin: auto;
+  text-shadow: 4px 4px 5px red;
+
+  font-family: cursive;
+  width: 800px;
+
+  text-align: center;
+}
+
+.title-container {
+  font-size: xx-large;
+  font-style: italic;
+  font-family: cursive;
+  display: flex;
+  justify-content: center;
+  color: darkred;
+  text-shadow: 4px 4px 5px rgb(22, 21, 20);
+}
+
+.scissor {
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  margin-left: 35%;
+}
+
+.taskandnote-container {
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  font-family: fantasy;
+  font-size: larger;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+
+
+
+}
+
+
+
+.goBack1 {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 15%;
+  margin-left: 5%;
+  color: black;
+  font-family: fantasy;
+  font-size: larger;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+
+}
+
+.goForth1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+  margin-right: 5%;
+  align-items: flex-end;
+  color: black;
+  font-family: fantasy;
+  font-size: larger;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+}
+
+
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: fantasy;
+  font-weight: bold;
+  font-size: larger;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+  margin-top: 200px;
+}
+
+.explanation-container {
+  position: fixed;
+  right: 30%;
+  top: 40%;
+  margin: 0;
+  font-family: fantasy;
+  font-weight: bold;
+  font-size: xx-large;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+}
+
+.playagain-container {
+  position: fixed;
+  margin: auto;
+  display: flex;
+  align-self: center;
+  right: 49%;
+  top: 80%;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 4px 4px 5px rgb(136, 255, 0);
+}
+
+canvas {
+  margin: auto;
+}
+
+.box1 {
+  position: relative;
+  left: 120px;
+}
+
+.box2 {
+  display: flex;
+
+
+  left: 220px;
+  top: 200px;
+}
+
+.box3 {
+
+  position: relative;
+  left: 320px;
+  top: 500px;
+}
+
+.box4 {
+
+  position: relative;
+  left: 420px;
+  top: 600px;
+}
+.box5{
+  position: relative;
+  left: 800px;
+  top: 140px;
+}
