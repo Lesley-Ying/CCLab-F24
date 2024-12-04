@@ -1,8 +1,18 @@
 let img1;
 let img2;
+let img3;
+let im4;
+let img5;
+let img6;
+let img7;
+let img8;
 let squares = [];
 let squareHeight = 10;
 let squareNumber = 100;
+let waveAmplitude = 20; 
+let waveSpeed = 0.03;   
+let horizontalAmplitude = 100; 
+let horizontalSpeed = 0.01;   
 
 
 
@@ -11,6 +21,11 @@ let mySound;
 function preload() {
   img1 = loadImage("assets/scissoropen.png");
   img2 = loadImage("assets/scissorclose.png");
+  img3 = loadImage("assets/1.png");
+  img4 = loadImage("assets/2.png");
+  img5 = loadImage("assets/3.png");
+  img6 = loadImage("assets/4.png");
+  img7=loadImage("assets/5.png");
 
   imgShow = img1;
   mySound = loadSound("assets/scissorsound.mp3");
@@ -29,8 +44,11 @@ function setup() {
 function draw() {
   background(0);
   image(imgShow, mouseX, mouseY, 50, 50);
-
   circle(mouseX + 10, mouseY + 40, 10);//helping circle
+
+  //image(img3,0,100,650,650);
+
+
 
   for (let i = 0; i < squares.length; i++) {
     squares[i].display();
@@ -38,9 +56,34 @@ function draw() {
   }
 
 
-
+  
   puppet.display();
   puppet.update();
+
+  let yOffset4 = sin(frameCount * waveSpeed) * waveAmplitude;
+  let yOffset5 = sin(frameCount * waveSpeed + PI / 2) * waveAmplitude; 
+  let yOffset6 = sin(frameCount * waveSpeed + PI) * waveAmplitude;    
+  let yOffset7 = sin(frameCount * waveSpeed + (3 * PI) / 2) * waveAmplitude;
+
+  
+  let xOffset4 = sin(frameCount * horizontalSpeed) * horizontalAmplitude;
+  let xOffset5 = sin(frameCount * horizontalSpeed + PI / 2) * horizontalAmplitude; 
+  let xOffset6 = sin(frameCount * horizontalSpeed + PI) * horizontalAmplitude;     
+  let xOffset7 = sin(frameCount * horizontalSpeed + (3 * PI) / 2) * horizontalAmplitude;
+
+  
+
+ 
+  image(img4, xOffset4-500, windowHeight / 3 + yOffset4, 200, 100);
+  image(img5, xOffset5-200, windowHeight / 3 + yOffset5, 200, 100);
+  image(img6, xOffset6+200, windowHeight / 3 + yOffset6, 200, 100);
+  image(img7, xOffset7+400, windowHeight / 3 + yOffset7, 200, 100);
+
+  image(img3,-340,-windowHeight/1.5,700,300)
+    
+  
+
+
 
 
 
@@ -64,61 +107,49 @@ class Puppet {
     this.y = windowHeight / 2;
     this.cutlineRight1 = false;
     this.cutlineLeft1 = false;
-    this.rightUparm = 0;
-    this.rightElbow = 0;
-    this.rightHand = 0;
-    this.leftUparm = 0;
-    this.leftElbow = 0;
-    this.leftHand = 0;
     this.mouthLeftX = -12;
     this.mouthLeftY = -98;
     this.mouthRightX = 12;
     this.mouthRightY = -98;
     this.mouthMiddle = -99;
-    this.controlRight = 1;
-    this.stringtransparency = 255;
     this.cutpointX = 0;
     this.cutpointY = 0;
-    this.rightFrame = 0;
-    this.move=0;
-    this.leftFrame=0;
-    this.controlLeft=1;
+    this.move = 0;
+    this.leftswing = 0;
+    this.leftswing1 = 0;
+    this.rightswing1 = 0;
+    this.leftSwingStarted = false;
+    this.rightSwingStarted = false;
+    this.leftswingfore = 0;
+    this.leftswinghand = 0;
+    this.rightswingfore = 0;
+    this.rightswing = 0;
+    this.rightswinghand = 0;
+    this.tear=255;
+    this.tear2=255;
+    this.squaretrans=255;
   }
   display() {
     push();
+    // image(img3,mouseX,mouseY,100,100)
+    // image(img4,windowWidth/2-50,windowHeight/2+windowHeight/4,100,100);
 
-    translate(this.x, this.y+this.move);
-    
+    translate(this.x, this.y + this.move)
+
+
     scale(0.8);
     //scale(-1,1);
     fill("white");
     stroke(0);
     rect(-10, -81, 20, 40);
-
-
-
-
     ellipse(0, -120, 80, 90);//face
-    // //shoulder
-    // circle(-40, -60, 30);
-    // circle(40, -60, 30);
+
+
     //earrings
     fill("#9E150B");
     circle(-40, -100, 10);
     circle(40, -100, 10);
     //eyes
-    //if(frameCount%140==0){
-    // push();
-    // translate(-230, 0);
-    // beginShape();
-    // fill("brown")
-    // vertex(725 - this.x, 240 - this.y);
-    // bezierVertex(714 - this.x, 237 - this.y, 706 - this.x, 236 - this.y, 695 - this.x, 238 - this.y);
-    // endShape();
-    // pop();
-
-
-
     push();
     translate(0, 0);
     beginShape();
@@ -164,7 +195,7 @@ class Puppet {
     noStroke();
     ellipse(-19, -125, 9, 4);
     pop();
-    //}
+
     //eyebrow
     push();
     noFill();
@@ -227,14 +258,6 @@ class Puppet {
     bezierVertex(27, -181, 10, -160, -7, -155);
     endShape();
 
-
-
-
-
-
-
-
-
     //body
     fill("white");
     noStroke();
@@ -284,16 +307,10 @@ class Puppet {
     circle(-40, -60, 30);
     circle(40, -60, 30);
 
-
-    //     push();
-    //     translate();
-    //     circle(95,-38,30);
-    //     rotate(0.5);
-    //     rect(10,-85,60,15,10);
-
-    //     pop();
-
     pop();
+    
+    
+    
 
   }
   update() {
@@ -304,35 +321,117 @@ class Puppet {
     }
 
     if (this.cutlineRight1 == true) {
-      this.rightUparm = sin((frameCount - this.rightFrame) * 0.01);
+      fill(8,35,185,this.tear);
+      this.tear-=2;
+      //this.squaretrans-=0.5;
+      noStroke();
+      ellipse(25,-105,5,10);
+      ellipse(-25,-105,5,10);
+
+      if (this.rightswing < 0.5) {
+        this.rightswing += 0.05;
+      } else {
+
+        if (!this.rightSwingStarted) {
+          this.rightSwingStarted = true;
+          this.rightSwingAngle = 0;
+          this.rightSwingAmplitude = 1;
+          this.rightSwingDecrease = 0.995;
+        }
+
+        this.rightSwingAngle += 0.02; // speed
+        this.rightSwingAmplitude *= this.rightSwingDecrease; // 逐渐减小幅度
+
+
+        this.rightswing1 = sin(this.rightSwingAngle) * this.rightSwingAmplitude;
+
+
+        if (this.rightSwingAmplitude < 0.01) {
+          this.rightswing1 = 0;
+        }
+
+
+      }
+      if (this.rightswingfore < 1.5) {
+        this.rightswingfore += 0.01
+      }
+      if (this.rightswinghand < 0.5) {
+        this.rightswinghand += 0.01;
+      }
+
       this.rightElbow = sin(frameCount * 0.01);
       this.rightHand = sin(frameCount * 0.01);
+      this.mouthRightY=-96;
+      this.mouthLeftY=-96;
 
 
-      this.mouthRightY = -96;
-      this.mouthLeftY = -96;
-      if (this.controlRight > 0) {
-        this.controlRight -= 0.001
-      } else {
-        this.controlRight = 0;
-      }
 
-    }
+
+
+    };
     if (this.cutlineLeft1 == true) {
-      this.leftUparm = sin(-(frameCount-this.leftFrame) * 0.005);
-      this.leftElbow = sin((frameCount-this.leftFrame) * 0.01);
-      this.leftHand = sin(frameCount * 0.01);
-      if (this.controlLeft > 0) {
-        this.controlLeft -= 0.001
-      } else {
-        this.controlLeft = 0;
+      fill(8,35,185,this.tear2);
+      this.tear2-=2;
+      //this.squaretrans-=0.5;
+      noStroke();
+      ellipse(25,-105,5,10);
+      ellipse(-25,-105,5,10);
+
+      if (this.leftswingfore < 1.5) {
+        this.leftswingfore += 0.05
+        // console.log(puppet.leftswingfore)
       }
+      if (this.leftswinghand < 0.5) {
+        this.leftswinghand += 0.02
+      }
+
+
+      if (this.leftswing < 1.8) {
+        this.leftswing += 0.07;
+      } else {
+        if (!this.leftSwingStarted) {
+          this.leftSwingStarted = true;
+          this.leftSwingAngle = 0;
+          this.leftSwingAmplitude = 1;
+          this.leftSwingDecrease = 0.995;
+          this.leftSwingDirection = -1;
+        }
+
+
+        this.leftSwingAngle += 0.015 * this.leftSwingDirection;
+        console.log(this.leftSwingAngle);
+
+
+        if (this.leftSwingAngle < -0.7) {
+          this.leftSwingDirection = 1;
+        }
+
+
+        this.leftSwingAmplitude *= this.leftSwingDecrease;
+
+
+        this.leftswing1 = sin(this.leftSwingAngle) * this.leftSwingAmplitude;
+
+
+        if (this.leftSwingAmplitude < 0.01) {
+          this.leftswing1 = 0;
+        }
+      }
+
+
+
+
+
     }
-    if(this.cutlineLeft1 == true && this.cutlineRight1 == true ){
-      if(this.y+this.move+160<windowHeight){
-        this.move=0.2
-      }else{
-        this.move=0;
+
+
+
+    if (this.cutlineLeft1 == true && this.cutlineRight1 == true) {
+      this.squaretrans-=1;
+      if (this.y + this.move + 160 < windowHeight) {
+        this.move = 0.2
+      } else {
+        this.move = 0;
         console.log(this.move)
       }
       this.y += this.move;
@@ -350,7 +449,6 @@ function mousePressed() {
     mouseY + 40 < windowHeight / 2 - 6
   ) {
     puppet.cutlineRight1 = true;
-    this.rightFrame = frameCount;
 
   }
   if (
@@ -360,7 +458,7 @@ function mousePressed() {
     mouseY + 40 > 0
   ) {
     puppet.cutlineLeft1 = true;
-    this.leftFrame=frameCount;
+
     puppet.cutpointX = mouseX + 10;
     puppet.cutponitY = mouseY + 40;
   }
@@ -370,7 +468,8 @@ function rightArm(a, b) {
   push();
   stroke(0);
   translate(a + 40, b - 55);
-  rotate(puppet.controlRight * 0.8 * puppet.rightUparm);
+
+  rotate(puppet.rightswing + puppet.rightswing1);
 
   // upper arm
   push();
@@ -383,11 +482,11 @@ function rightArm(a, b) {
 
   // forearm, wrist & hand
   push();
-  translate(53, 22);
-  rotate(-0.7 + puppet.controlRight * 1.8 * puppet.rightElbow);
+  translate(55, 22);
+  rotate(-0.7 + puppet.rightswingfore + puppet.rightswing1);
   //rotate(0.9);
   // forearm
-  rect(0, 0, 70, 15, 10);
+  rect(0, -5, 70, 15, 10);
 
   // wrist
   circle(70, 10, 25);
@@ -395,7 +494,7 @@ function rightArm(a, b) {
   // hand
   push();
   translate(70, 10);
-  rotate(0.7 + 0.7 * puppet.controlRight * puppet.rightHand);
+  rotate(0.7 - puppet.rightswinghand + puppet.rightswing1);
   ellipse(20, 0, 40, 20);
   //stringcutdown
   if (puppet.cutlineRight1 == true) {
@@ -430,15 +529,7 @@ function rightArm(a, b) {
     endShape();
   }
 
-  //stringcut down
-  // if (puppet.cutlineRight1 == true) {
-  //   beginShape();
-  //   noFill();
-  //   stroke("white");
-  //   vertex(107.5, -6);
-  //   bezierVertex(165 - 40, -23 + 60, 191 - 40, -21 + 60, 193 - 40, -32 + 60);
-  //   endShape();
-  // }
+
   pop();
   if (puppet.cutlineRight1 == true) {
     push();
@@ -459,7 +550,9 @@ function leftArm(c, d) {
   push();
   stroke(0);
   translate(c - 40, d - 55);
-  rotate(1.5 * puppet.leftUparm*puppet.controlLeft);
+
+
+  rotate(-puppet.leftswing + puppet.leftswing1);
   //upper arm
   push();
   rotate(0.5);
@@ -469,7 +562,9 @@ function leftArm(c, d) {
   circle(-55, -40, 30);
   push();
   translate(-55, -40);
-  rotate(-1.3 -0.5 * puppet.leftElbow); //-1.3
+
+
+  rotate(-1.3 + puppet.leftswingfore + puppet.leftswing1); //-1.3
   //forearm
   rect(-65, -5, 70, 15, 10);
   //wrist
@@ -477,7 +572,7 @@ function leftArm(c, d) {
   //hand
   push();
   translate(-65, 0);
-  rotate(-0.3 + 0.5 * puppet.leftHand);
+  rotate(-0.3 + puppet.leftswinghand + puppet.leftswing1);
   ellipse(-20, 0, 40, 20);
   pop();
 
@@ -506,14 +601,14 @@ function leftArm(c, d) {
 }
 class Square {
   constructor(startY) {
-    this.x = windowWidth / 2-3;
+    this.x = windowWidth / 2 - 3;
     this.y = startY;
     this.speedX = random(-1, 1); // Random horizontal speed
     this.size = squareHeight;
   }
 
   display() {
-    fill(255);
+    fill(255,255,255,puppet.squaretrans);
     noStroke();
     rect(this.x, this.y, this.size, this.size);
   }
