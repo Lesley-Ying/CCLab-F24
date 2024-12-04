@@ -44,7 +44,7 @@ function setup() {
 function draw() {
   background(0);
   image(imgShow, mouseX, mouseY, 50, 50);
-  circle(mouseX + 10, mouseY + 40, 10);//helping circle
+  //circle(mouseX + 10, mouseY + 40, 10);//helping circle
 
   //image(img3,0,100,650,650);
 
@@ -89,17 +89,17 @@ function draw() {
 
 
 
-  // Style the text.
-  textAlign(CENTER);
-  textSize(16);
-  fill("white");
+  // // Style the text.
+  // textAlign(CENTER);
+  // textSize(16);
+  // fill("white");
 
-  // Display the mouse's coordinates.
-  text(
-    `x: ${mouseX} y: ${mouseY}`,
-    50,
-    50
-  );
+  // // Display the mouse's coordinates.
+  // text(
+  //   `x: ${mouseX} y: ${mouseY}`,
+  //   50,
+  //   50
+  // );
 }
 class Puppet {
   constructor() {
