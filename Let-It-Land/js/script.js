@@ -6,13 +6,22 @@ let img5;
 let img6;
 let img7;
 let img8;
+let img9;
+let img10;
+let img11;
+let img12;
+let img13;
+let img14;
+let img15;
+let img16;
+let img17;
 let squares = [];
 let squareHeight = 10;
-let squareNumber = 100;
-let waveAmplitude = 20; 
-let waveSpeed = 0.03;   
-let horizontalAmplitude = 100; 
-let horizontalSpeed = 0.01;   
+let squareNumber = 150;
+let waveAmplitude = 20;
+let waveSpeed = 0.03;
+let horizontalAmplitude = 100;
+let horizontalSpeed = 0.01;
 
 
 
@@ -25,16 +34,28 @@ function preload() {
   img4 = loadImage("assets/2.png");
   img5 = loadImage("assets/3.png");
   img6 = loadImage("assets/4.png");
-  img7=loadImage("assets/5.png");
+  img7 = loadImage("assets/5.png");
+  img8 = loadImage("assets/6.png");
+  img9 = loadImage("assets/test tube empty.png");
+  img10 = loadImage("assets/test tube half.png");
+  img11 = loadImage("assets/test tube full.png");
+  img12 = loadImage("assets/test tube pour.png");
+  img13=loadImage("assets/test tube pour 2.png");
+  img14=loadImage("assets/test tube pour 3.png");
+  img15=loadImage("assets/congrats.png");
+  img16=loadImage("assets/try.png");
+img17=loadImage("assets/blank.png");
 
   imgShow = img1;
+  imgShowTube = img9;
   mySound = loadSound("assets/scissorsound.mp3");
 }
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent('p5-canvas-container');
+  
   for (let i = 0; i < squareNumber; i++) {
-    squares.push(new Square(i * squareHeight)); // y position for each rectangle
+    squares.push(new Square(i * squareHeight)); // x position for each rectangle
 
   }
   puppet = new Puppet();
@@ -43,63 +64,74 @@ function setup() {
 
 function draw() {
   background(0);
-  image(imgShow, mouseX, mouseY, 50, 50);
-  //circle(mouseX + 10, mouseY + 40, 10);//helping circle
+ 
 
-  //image(img3,0,100,650,650);
 
 
 
   for (let i = 0; i < squares.length; i++) {
-    squares[i].display();
     squares[i].update();
+    squares[i].display();
+    
   }
 
 
-  
-  puppet.display();
+
   puppet.update();
+  puppet.display();
+   image(imgShow, mouseX, mouseY, 50, 50);
+  image(imgShowTube, puppet.tubeX, puppet.tubeY, puppet.tubeWidth, puppet.tubeHeight);
+
+
+
 
   let yOffset4 = sin(frameCount * waveSpeed) * waveAmplitude;
-  let yOffset5 = sin(frameCount * waveSpeed + PI / 2) * waveAmplitude; 
-  let yOffset6 = sin(frameCount * waveSpeed + PI) * waveAmplitude;    
+  let yOffset5 = sin(frameCount * waveSpeed + PI / 2) * waveAmplitude;
+  let yOffset6 = sin(frameCount * waveSpeed + PI) * waveAmplitude;
   let yOffset7 = sin(frameCount * waveSpeed + (3 * PI) / 2) * waveAmplitude;
+  let yOffset8 = sin(frameCount * waveSpeed + (4 * PI) / 2) * waveAmplitude;
 
-  
+
   let xOffset4 = sin(frameCount * horizontalSpeed) * horizontalAmplitude;
-  let xOffset5 = sin(frameCount * horizontalSpeed + PI / 2) * horizontalAmplitude; 
-  let xOffset6 = sin(frameCount * horizontalSpeed + PI) * horizontalAmplitude;     
+  let xOffset5 = sin(frameCount * horizontalSpeed + PI / 2) * horizontalAmplitude;
+  let xOffset6 = sin(frameCount * horizontalSpeed + PI) * horizontalAmplitude;
   let xOffset7 = sin(frameCount * horizontalSpeed + (3 * PI) / 2) * horizontalAmplitude;
-
-  
-
- 
-  image(img4, xOffset4-500, windowHeight / 3 + yOffset4, 200, 100);
-  image(img5, xOffset5-200, windowHeight / 3 + yOffset5, 200, 100);
-  image(img6, xOffset6+200, windowHeight / 3 + yOffset6, 200, 100);
-  image(img7, xOffset7+400, windowHeight / 3 + yOffset7, 200, 100);
-
-  image(img3,-340,-windowHeight/1.5,700,300)
-    
-  
+  let xOffset8 = sin(frameCount * horizontalSpeed + (4 * PI) / 2) * horizontalAmplitude;
 
 
 
+  image(img4, xOffset4 + windowWidth / 2 - 500, 2.5 * windowHeight / 3 + yOffset4, 200, 100);
+  image(img5, xOffset5 + windowWidth / 2 - 300, 2.5 * windowHeight / 3 + yOffset5, 200, 100);
+  image(img6, xOffset6 + windowWidth / 2 + 200, 2.5 * windowHeight / 3 + yOffset6, 200, 100);
+  image(img7, xOffset7 + windowWidth / 2 + 400, 2.5 * windowHeight / 3 + yOffset7, 200, 100);
+  image(img8, xOffset8 + windowWidth / 2 - 50, 2.5 * windowHeight / 3 + yOffset8, 200, 150);
+  //image(img9,windowWidth/5,windowHeight/2,50,100);
+  //image(img10,windowWidth/5-100,windowHeight/2,50,100);
+  //image(img11,windowWidth/5-150,windowHeight/2,25,100);
+  //image(img12,windowWidth/5-200,windowHeight/2,25,100);
+
+
+  //image(img3,0,0,700,300);
+  //image(imgShow, mouseX, mouseY, 50, 50);
 
 
 
 
-  // // Style the text.
-  // textAlign(CENTER);
-  // textSize(16);
-  // fill("white");
 
-  // // Display the mouse's coordinates.
-  // text(
-  //   `x: ${mouseX} y: ${mouseY}`,
-  //   50,
-  //   50
-  // );
+  // Style the text.
+  textAlign(CENTER);
+  textSize(16);
+  fill("white");
+
+  // Display the mouse's coordinates.
+  text(
+    `x: ${mouseX - windowWidth / 2} y: ${mouseY - windowHeight / 2}`,
+    50,
+    50
+  );
+
+
+
 }
 class Puppet {
   constructor() {
@@ -120,29 +152,151 @@ class Puppet {
     this.rightswing1 = 0;
     this.leftSwingStarted = false;
     this.rightSwingStarted = false;
+    //this.squareBlue = false;
     this.leftswingfore = 0;
     this.leftswinghand = 0;
     this.rightswingfore = 0;
     this.rightswing = 0;
     this.rightswinghand = 0;
-    this.tear=255;
-    this.tear2=255;
-    this.squaretrans=255;
+    this.tear = 255;
+
+    this.tear2 = 255;
+    this.squaretrans = 255;
+    this.swingAmplitude = 3;
+    this.swingSpeed = 0.02;
+    this.rotationAmplitude = 0.02;
+    this.swingOffset = 0;
+    this.rotationOffset = 0;
+    this.swingOffset = 0;
+
+    this.leftswing2 = 0;
+    this.leftSwingAngle2 = 0;
+    this.leftSwingAmplitude2 = 1;
+    this.leftSwingDecrease2 = 0.995;
+    this.cutponit2X = 0;
+    this.cutponit2Y = 0;
+    this.squareFrame = 0;
+    this.tubeChange = 0;
+    this.tubeWidth = 80;
+    this.tubeHeight = 160;
+    this.tubeX = windowWidth / 5;
+    this.tubeY = windowHeight / 2;
+
   }
   display() {
-    push();
-    // image(img3,mouseX,mouseY,100,100)
-    // image(img4,windowWidth/2-50,windowHeight/2+windowHeight/4,100,100);
+    //shoulder string
 
-    translate(this.x, this.y + this.move)
+
+    //cut right string
+    if (this.cutlineRight1 == true) {
+
+      //
+      push();
+      translate(130 + windowWidth / 2 - 40 + 45 + 5, -240 + windowHeight / 2 + 55 - 40);
+      rotate(this.rightswing1);
+      beginShape();
+      noFill();
+      stroke("white");
+      vertex(0, 0);
+      bezierVertex(160 + windowWidth / 2 - 40 - (130 + windowWidth / 2 - 40) - 30, -44 + windowHeight / 2 - (-240 + windowHeight / 2 + 55) - 200, 130 + windowWidth / 2 - 40 - (130 + windowWidth / 2 - 40), 60 + windowHeight / 2 - (-240 + windowHeight / 2 + 55) - 150, this.cutponit2X - (130 + windowWidth / 2 - 40 + 45 + 5), this.cutponit2Y - (-240 + windowHeight / 2 + 55 - 40));
+      endShape();
+      fill("red");
+      circle(0, -10, 10)
+      pop();
+
+
+
+    }
+
+    if (this.cutlineLeft1 == true) {
+      push();
+      translate(-99 + windowWidth / 2, -300 + windowHeight / 2 + 55);
+      rotate(this.leftswing2);
+
+      stroke("white");
+      fill("white");
+      circle(0, 0, 10)
+      beginShape();
+      noFill();
+      vertex(0, 0);
+      bezierVertex(-115 + windowWidth / 2 - (-99 + windowWidth / 2), -270 + windowHeight / 2 + 55 - (-300 + windowHeight / 2 + 55), -91 + windowWidth / 2 - (-99 + windowWidth / 2), -253 + windowHeight / 2 + 55 - (-300 + windowHeight / 2 + 55), this.cutpointX - (-99 + windowWidth / 2), this.cutponitY - (-300 + windowHeight / 2 + 55));
+      endShape();
+      pop();
+    }
+
+    //string right original
+    if (puppet.cutlineRight1 == false) {
+      push();
+      translate(130 + windowWidth / 2 - 40 + 45 + 5, -240 + windowHeight / 2 + 55 - 40);
+      rotate(-this.rotationOffset);
+      beginShape();
+      noFill();
+      stroke("white");
+      vertex(0, 0);
+
+      bezierVertex(160 + windowWidth / 2 - 40 - (130 + windowWidth / 2 - 40), -44 + windowHeight / 2 - (-240 + windowHeight / 2 + 55), 130 + windowWidth / 2 - 40 - (130 + windowWidth / 2 - 40), 60 + windowHeight / 2 - (-240 + windowHeight / 2 + 55), 112.5 + windowWidth / 2 - 40 - (130 + windowWidth / 2 - 40), -19 + windowHeight / 2 - (-240 + windowHeight / 2 + 55));
+      endShape();
+      fill("red");
+      circle(0, -10, 10)
+      pop();
+    }
+
+
+    //string left original
+    if (puppet.cutlineLeft1 == false) {
+
+
+      push();
+      translate(-99 + windowWidth / 2, -300 + windowHeight / 2 + 55);
+      rotate(-this.rotationOffset);
+
+      stroke("white");
+      fill("red");
+      circle(0, 0, 10)
+      beginShape();
+      noFill();
+      vertex(0, 0);
+      bezierVertex(-115 + windowWidth / 2 - (-99 + windowWidth / 2), -270 + windowHeight / 2 + 55 - (-300 + windowHeight / 2 + 55), -91 + windowWidth / 2 - (-99 + windowWidth / 2), -253 + windowHeight / 2 + 55 - (-300 + windowHeight / 2 + 55), -95 + windowWidth / 2 + 20 - (-98 + windowWidth / 2 + 20) + 15, -99 + windowHeight / 2 + 15 - (-210 + windowHeight / 2) + 40);
+      endShape();
+      pop();
+    }
+
+    //image(img3, windowWidth / 2-160, windowHeight/16, 400, 175);
+
+    push();
+    image(img3, windowWidth / 2-165, windowHeight/12.5, 400, 175);
+
+
+
+
+
+
+    translate(this.x + this.swingOffset, this.y + this.move);
+    rotate(this.rotationOffset);
+
+
 
 
     scale(0.8);
+
     //scale(-1,1);
     fill("white");
     stroke(0);
     rect(-10, -81, 20, 40);
     ellipse(0, -120, 80, 90);//face
+
+    if (this.cutlineRight1 == true) {
+      fill(0, 135, 255, this.tear);
+      noStroke();
+      ellipse(25, -105, 5, 10);
+      ellipse(-25, -105, 5, 10);
+    }
+    if (this.cutlineLeft1 == true) {
+      fill(0, 135, 255, this.tear2);
+      noStroke();
+      ellipse(25, -105, 5, 10);
+      ellipse(-25, -105, 5, 10);
+    }
 
 
     //earrings
@@ -150,6 +304,7 @@ class Puppet {
     circle(-40, -100, 10);
     circle(40, -100, 10);
     //eyes
+    stroke(0);
     push();
     translate(0, 0);
     beginShape();
@@ -234,6 +389,7 @@ class Puppet {
     bezierVertex(-6, -103, -4, -103, 0, this.mouthMiddle);
     endShape();
     pop();
+
     push();
     translate(0, 1);
     scale(-1, 1);
@@ -244,13 +400,46 @@ class Puppet {
     bezierVertex(-6, -103, -4, -103, 0, this.mouthMiddle);
     endShape();
     pop();
+
+
+
+
     //hat
+    this.drawHat();
+
+    //dress
+    this.drawDress();
+
+
+
+
+
+
+
+
+    rightArm(0, 0);
+    leftArm(0, 0);
+    //shoulder
+    fill("white");
+    stroke(0);
+    circle(-40, -60, 30);
+    circle(40, -60, 30);
+
+    pop();
+
+
+
+
+  }
+  drawHat() {
     push();
     translate(-10, -160);
     rotate(-0.3);
     fill("#9E150B")
     ellipse(0, 0, 100, 40);
+
     pop();
+
     beginShape();
     stroke("white")
     noFill();
@@ -258,7 +447,8 @@ class Puppet {
     bezierVertex(27, -181, 10, -160, -7, -155);
     endShape();
 
-    //body
+  }
+  drawDress() {
     fill("white");
     noStroke();
     triangle(0, -22, -127, 171, 127, 171);
@@ -266,8 +456,6 @@ class Puppet {
     rect(-28, -10, 55, 60, 10);//connect
     rect(-50, -65, 95, 80, 20, 20, 50, 50);
 
-
-    //dress
     push();
     translate(0, 0);
     stroke(0);
@@ -275,6 +463,7 @@ class Puppet {
     vertex(-26, 34);
     bezierVertex(-64, 53, -117, 97, -127, 171);
     endShape();
+    pop()
 
     push();
     translate(0, 0);
@@ -292,28 +481,28 @@ class Puppet {
     bezierVertex(-60, 206, 52, 206, 127, 171);
     endShape();
     pop();
-
-
-
-
-
-
-
-    rightArm(0, 0);
-    leftArm(0, 0);
-    //shoulder
-    fill("white");
-    stroke(0);
-    circle(-40, -60, 30);
-    circle(40, -60, 30);
-
-    pop();
-    
-    
-    
-
   }
   update() {
+    this.swingOffset = sin(frameCount * this.swingSpeed) * this.swingAmplitude;
+    this.rotationOffset = sin(frameCount * this.swingSpeed) * this.rotationAmplitude;
+    if (this.cutlineLeft1 == true) {
+
+      this.leftswing2 = sin(this.leftSwingAngle2) * this.leftSwingAmplitude2;
+      this.leftSwingAmplitude2 *= this.leftSwingDecrease2;
+
+      this.leftSwingAngle2 += 0.015;
+
+      if (this.leftSwingAmplitude2 < 0.01) {
+        this.leftswing2 = 0;
+      }
+    }
+
+    if (this.cutlineRight1 == true || this.cutlineLeft1 == true) {
+      this.rotationAmplitude = 0.05;
+     
+    }
+
+
     if (mouseIsPressed == true) {
       imgShow = img2;
     } else {
@@ -321,12 +510,12 @@ class Puppet {
     }
 
     if (this.cutlineRight1 == true) {
-      fill(8,35,185,this.tear);
-      this.tear-=2;
-      //this.squaretrans-=0.5;
-      noStroke();
-      ellipse(25,-105,5,10);
-      ellipse(-25,-105,5,10);
+      if (this.tear > 0) {
+        this.tear -= 2;
+      }
+
+
+
 
       if (this.rightswing < 0.5) {
         this.rightswing += 0.05;
@@ -361,8 +550,10 @@ class Puppet {
 
       this.rightElbow = sin(frameCount * 0.01);
       this.rightHand = sin(frameCount * 0.01);
-      this.mouthRightY=-96;
-      this.mouthLeftY=-96;
+      // this.mouthRightY = -96;
+      // this.mouthLeftY = -96;
+
+
 
 
 
@@ -370,12 +561,9 @@ class Puppet {
 
     };
     if (this.cutlineLeft1 == true) {
-      fill(8,35,185,this.tear2);
-      this.tear2-=2;
-      //this.squaretrans-=0.5;
-      noStroke();
-      ellipse(25,-105,5,10);
-      ellipse(-25,-105,5,10);
+      if (this.tear2 > 0) {
+        this.tear2 -= 2;
+      }
 
       if (this.leftswingfore < 1.5) {
         this.leftswingfore += 0.05
@@ -399,7 +587,7 @@ class Puppet {
 
 
         this.leftSwingAngle += 0.015 * this.leftSwingDirection;
-        console.log(this.leftSwingAngle);
+
 
 
         if (this.leftSwingAngle < -0.7) {
@@ -426,22 +614,71 @@ class Puppet {
 
 
 
-    if (this.cutlineLeft1 == true && this.cutlineRight1 == true) {
-      this.squaretrans-=1;
-      if (this.y + this.move + 160 < windowHeight) {
-        this.move = 0.2
-      } else {
-        this.move = 0;
-        console.log(this.move)
-      }
-      this.y += this.move;
+    // if (this.tubeChange==3) {
+    //   document.getElementById("successSentence").style.display = "block";
+    //   //   let index = Math.floor((frameCount % (squareNumber * 2)) / 2); // 每5帧改变一个方块
+    //   // if (index < squares.length) {
+    //   //   squares[index].isBlue = true;
+    //   // }
+    //   if (!this.squareBlue) {
+    //     this.squareBlue = true;
+    //     this.squareFrame = frameCount;
+    //   }
+    //   this.currentSquare = floor((frameCount - this.squareFrame) / 2) % squares.length; // 每2帧变一个方块，循环所有方块
+    //   if (this.currentSquare < squares.length) {
+    //     squares[this.currentSquare].isBlue = true;
 
+    //   }
+    //   if (this.currentSquare == 149 && !square.allBlue) {
+    //     square.allBlue = true;
+
+    //   }
+    // }
+
+    //this.swingOffset = 0;
+    //this.rotationOffset = 0;
+
+
+    // if (this.y + this.move + 160 < windowHeight && square.allBlue == true) {
+    //   this.move = 0.2
+    // } else {
+    //   this.move = 0;
+
+    // }
+    this.y += this.move;
+
+
+    if (this.cutlineRight1 == true || this.cutlineLeft1 == true) {
+       this.mouthRightY = -96;
+       this.mouthLeftY = -96;
+      if (this.tubeChange == 0) {
+        imgShowTube = img10;
+        this.tubeChange = 1
+      };
+    };
+    if (this.cutlineLeft1 == true && this.cutlineRight1 == true) {
+      //cursor('grab');
+      imgShow=img17;
+      if (this.tubeChange == 1) {
+        this.tubeChange = 2;
+        imgShowTube = img11;
+      }
+      if(puppet.tubeChange == 2){
+      //text("try the tube",windowWidth/5,windowHeight/2);
+      image(img16,windowWidth/5-100,windowHeight/2,100,20);
+      }
     }
+    
+
   }
 }
 
 function mousePressed() {
+
+  // document.getElementById("successSentence").style.display = "block";
+
   mySound.play();
+  //  if (abs(mouseX+10-(this.x + this.swingOffset))>170 + windowWidth / 2 - 40-(this.x + this.swingOffset)-20&&abs(mouseX+10-(this.x + this.swingOffset))<170 + windowWidth / 2 - 40-(this.x + this.swingOffset)+20)
   if (
     mouseX + 10 > windowWidth / 2 + 130 &&
     mouseX + 10 < windowWidth / 2 + 160 &&
@@ -449,19 +686,45 @@ function mousePressed() {
     mouseY + 40 < windowHeight / 2 - 6
   ) {
     puppet.cutlineRight1 = true;
+    puppet.cutponit2X = mouseX + 10;
+    puppet.cutponit2Y = mouseY + 40;
+
 
   }
   if (
-    mouseX + 10 > windowWidth / 2 - 92 &&
-    mouseX + 10 < windowWidth / 2 - 50 &&
-    mouseY + 40 < windowHeight / 2 - 44 &&
-    mouseY + 40 > 0
+    mouseX + 10 > windowWidth / 2 - 120 &&
+    mouseX + 10 < windowWidth / 2 - 80 &&
+    mouseY + 40 < windowHeight / 2 &&
+    mouseY + 40 > 100
   ) {
     puppet.cutlineLeft1 = true;
 
     puppet.cutpointX = mouseX + 10;
     puppet.cutponitY = mouseY + 40;
   }
+  if (mouseX  > windowWidth / 5  && mouseX  < windowWidth / 5 + 80 && mouseY  > windowHeight / 2  && mouseY  < windowHeight / 2 + 160) {
+
+    if (puppet.tubeChange == 2) {
+      puppet.tubeWidth = 160;
+      puppet.tubeHeight = 80;
+      puppet.tubeY = windowHeight / 2 + 50;
+      puppet.tubeChange =3;
+      
+      imgShowTube =img12;
+      //console.log(square.currentSquare)
+     
+
+     
+
+
+
+
+    }
+
+  }
+  //if(mouseX+10>windowWidth/5-100&&mouseX+10<windowWidth/5+100&&mouseY+40>windowHeight/2-100&&mouseY+40<windowHeight/2+100){
+
+  //}
 }
 
 function rightArm(a, b) {
@@ -514,36 +777,11 @@ function rightArm(a, b) {
 
   pop();
 
-  // pop();
-
-
-
-
-  //string
-  if (puppet.cutlineRight1 == false) {
-    beginShape();
-    noFill();
-    stroke("white");
-    vertex(130, -240);
-    bezierVertex(160, -44, 130, 60, 107.5, -6);
-    endShape();
-  }
 
 
   pop();
-  if (puppet.cutlineRight1 == true) {
-    push();
-    stroke(0);
-    translate(a, b);
-    //stringcut up
-    beginShape();
-    noFill();
-    stroke("rgba(255,255,255,puppet.stringtransparency)");
-    vertex(170, -300);
-    bezierVertex(219, -273, 206, -228, 168, -242);
-    endShape();
-    pop();
-  }
+
+
 
 }
 function leftArm(c, d) {
@@ -577,46 +815,91 @@ function leftArm(c, d) {
   pop();
 
   pop();
-  if (puppet.cutlineLeft1 == false) {
-    beginShape();
-    noFill();
-    stroke("white");
-    vertex(-98 + 40, -300 + 55);
-    bezierVertex(-122 + 40, -226 + 55, -70 + 40, -160 + 55, -95 + 40, -99 + 55);
-    endShape();
-  }
 
   pop();
-  if (puppet.cutlineLeft1 == true) {
-    push();
-    translate(c, d);
-    rotate(0);
-    stroke("white");
-    beginShape();
-    noFill();
-    vertex(-99, -300);
-    bezierVertex(-115, -270, -91, -253, (puppet.cutpointX - windowWidth / 2) / 0.8, (puppet.cutponitY - windowHeight / 2) / 0.8);
-    endShape();
-  }
+
 }
 class Square {
-  constructor(startY) {
-    this.x = windowWidth / 2 - 3;
-    this.y = startY;
-    this.speedX = random(-1, 1); // Random horizontal speed
+  constructor(startX) {
+    // this.x = windowWidth / 2 - 3;
+    // this.y = startY;
+    this.x = startX;
+    this.y = 2.15 * windowHeight / 3;
+    //this.speedX = random(-1, 1); // Random horizontal speed
+    this.speedY = random(-1, 1);
     this.size = squareHeight;
+    this.isBlue = false;
+    this.allBlue = false;
+    this.squareBlue = false;
+    this.squareFrame = 0;
+    this.currentSquare = 0;
+    
   }
 
   display() {
-    fill(255,255,255,puppet.squaretrans);
+
     noStroke();
+    if (this.isBlue == true) {
+      fill(0, 135, 255); // 蓝色
+    } else {
+      fill(255); // 白色
+    }
     rect(this.x, this.y, this.size, this.size);
   }
 
   update() {
-    if (puppet.cutlineRight1 == true &&
-      puppet.cutlineLeft1 == true) {
-      this.x += this.speedX;
+    if (puppet.tubeChange == 3) {
+    //  document .getElementById("successSentence").style.display = "block";
+      //   let index = Math.floor((frameCount % (squareNumber * 2)) / 2); // 每5帧改变一个方块
+      // if (index < squares.length) {
+      //   squares[index].isBlue = true;
+      // }
+      if (!this.squareBlue) {
+        this.squareBlue = true;
+        this.squareFrame = frameCount;
+      }
+      this.currentSquare = floor((frameCount - this.squareFrame) / 2) % squares.length; // 每2帧变一个方块，循环所有方块
+      //console.log(this.currentSquare)
+      if (this.currentSquare < squares.length) {
+        squares[this.currentSquare].isBlue = true;
+
+      }
+      if (this.currentSquare == 149 && !this.allBlue) {
+        this.allBlue = true;
+
+      }
+      
+    }
+
+    if (this.allBlue == true) {
+      //this.x += this.speedX;
+
+      this.y += this.speedY;
+      puppet.tubeWidth=200;
+      puppet.tubeHeight=50;
+      imgShowTube=img15;
+      document .getElementById("successSentence").style.display = "block";
+
     } // Update position based on speed
+    if (puppet.y + puppet.move + 160 < windowHeight && this.allBlue == true) {
+      puppet.move = 0.2
+    } else {
+      puppet.move = 0;
+
+    }
+    if(this.currentSquare>50&&this.currentSquare<100&&!this.allBlue){
+      imgShowTube=img13;
+     
+    }
+    if(this.currentSquare>=100&&this.currentSquare<148&&!this.allBlue){
+      imgShowTube=img14;
+      
+    }
+    
+    
+    // if(puppet.tubeChange==4){
+    //   imgShowTube=img4;
+    // }
   }
 }
+
