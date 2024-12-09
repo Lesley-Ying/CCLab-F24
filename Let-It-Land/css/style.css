@@ -22,10 +22,11 @@ canvas {
 }
 
 .headline-container {
-  margin: auto;
+  margin:auto;
   text-shadow: 4px 4px 5px red;
 
   font-family: cursive;
+  font-size: x-large;
   width: 800px;
 
   text-align: center;
@@ -104,13 +105,14 @@ canvas {
 }
 
 .explanation-container {
+ 
   position: fixed;
-  right: 30%;
+  right: 25%;
   top: 40%;
   margin: 0;
   font-family: fantasy;
   font-weight: bold;
-  font-size: xx-large;
+  font-size: 300%;
   text-shadow: 4px 4px 5px rgb(136, 255, 0);
 }
 
@@ -133,15 +135,26 @@ canvas {
 
 .box1 {
   position: relative;
+  margin-top: 100px;
   left: 120px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
 
 .box2 {
-  display: flex;
+  display: relative;
+  margin-left: 50px;
+  margin-top: 50px;
 
 
-  left: 220px;
+  
   top: 200px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
 
 .box3 {
@@ -149,6 +162,10 @@ canvas {
   position: relative;
   left: 320px;
   top: 500px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
 
 .box4 {
@@ -156,13 +173,37 @@ canvas {
   position: relative;
   left: 420px;
   top: 600px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
 .box5{
   position: relative;
   left: 800px;
-  top: 140px;
+  margin-top: 0px;
+  
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
+
 
 #successSentence{
   display: none;
+  font-family: fantasy;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: medium;
+  text-shadow: 4px 4px 5px rgb(255,255,255);
+}
+.box6{
+  position: relative;
+  margin-left: 100px;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: x-large;
+  text-shadow: 2px 2px 3px rgb(214,18,43);
 }
