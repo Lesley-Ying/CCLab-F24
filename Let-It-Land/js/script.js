@@ -104,18 +104,6 @@ function draw() {
 
 
 
-  // Style the text.
-  textAlign(CENTER);
-  textSize(16);
-  fill("white");
-
-  // Display the mouse's coordinates.
-  text(
-    `x: ${mouseX - windowWidth / 2} y: ${mouseY - windowHeight / 2}`,
-    50,
-    50
-  );
-
 
 
 }
